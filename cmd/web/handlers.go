@@ -128,14 +128,16 @@ func (app *application) render(w http.ResponseWriter, status int, data pageData)
 }
 
 func healthz(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("ok\n"))
+	// A failed write means the client went away; there is nothing to do,
+	// so the error is ignored on purpose (`_, _ =` makes that visible).
+	_, _ = w.Write([]byte("ok\n"))
 }
 
 // Demo receiver: a controlled endpoint to send webhooks to.
 
 func demoOK(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	w.Write([]byte(`{"received":true}`))
+	_, _ = w.Write([]byte(`{"received":true}`))
 }
 
 func demoFail(w http.ResponseWriter, r *http.Request) {
@@ -144,10 +146,10 @@ func demoFail(w http.ResponseWriter, r *http.Request) {
 
 func demoSlow(w http.ResponseWriter, r *http.Request) {
 	// Read the body so the server notices when the sender disconnects.
-	io.Copy(io.Discard, r.Body)
+	_, _ = io.Copy(io.Discard, r.Body)
 	select {
 	case <-time.After(5 * time.Second): // longer than the sender timeout
-		w.Write([]byte(`{"received":true,"slow":true}`))
+		_, _ = w.Write([]byte(`{"received":true,"slow":true}`))
 	case <-r.Context().Done(): // the sender gave up
 	}
 }

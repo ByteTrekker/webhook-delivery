@@ -1,0 +1,15 @@
+# golangci-lint v2 configuration.
+# "standard" enables errcheck, govet, ineffassign, staticcheck and unused.
+version: "2"
+
+linters:
+  default: standard
+  exclusions:
+    presets:
+      # Allows the idiomatic `defer resp.Body.Close()` and fmt.Print* without
+      # checking their errors. Other ignored errors must be explicit: `_ = f()`.
+      - std-error-handling
+
+formatters:
+  enable:
+    - gofmt

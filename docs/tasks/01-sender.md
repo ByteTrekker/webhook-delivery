@@ -19,7 +19,7 @@ Po zadaniu na `http://localhost:8080`:
 ## Kryteria ukończenia
 
 1. `go test ./...` przechodzi (5 testów w `internal/webhook/sender_test.go`).
-2. `go vet ./...` bez uwag.
+2. `./scripts/check.sh` bez uwag (gofmt, vet, golangci-lint, testy).
 3. Trzy scenariusze wyżej działają w przeglądarce.
 4. Potrafisz w 2–3 zdaniach wyjaśnić, dlaczego HTTP 500 **nie** jest błędem zwracanym przez `Send`, a timeout jest.
 
