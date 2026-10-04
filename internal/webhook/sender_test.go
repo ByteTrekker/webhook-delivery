@@ -34,7 +34,7 @@ func TestSendSuccess(t *testing.T) {
 		if string(body) != string(payload) {
 			t.Errorf("body = %s, want %s", body, payload)
 		}
-		w.Write([]byte(`{"received":true}`))
+		_, _ = w.Write([]byte(`{"received":true}`))
 	}))
 	defer srv.Close()
 
@@ -78,7 +78,7 @@ func TestSendServerError(t *testing.T) {
 func TestSendTimeout(t *testing.T) {
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// Read the body so the server notices when the client disconnects.
-		io.Copy(io.Discard, r.Body)
+		_, _ = io.Copy(io.Discard, r.Body)
 		select {
 		case <-time.After(2 * time.Second):
 		case <-r.Context().Done(): // the client gave up
@@ -111,7 +111,7 @@ func TestSendTimeout(t *testing.T) {
 
 func TestSendTruncatesLargeResponse(t *testing.T) {
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(strings.Repeat("x", 10_000)))
+		_, _ = w.Write([]byte(strings.Repeat("x", 10_000)))
 	}))
 	defer srv.Close()
 

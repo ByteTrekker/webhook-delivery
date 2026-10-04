@@ -8,6 +8,7 @@
 - Form at `/`, receivers from config (`demo-ok`, `demo-fail`, `demo-slow`).
 - `/send` validates input (64 KiB limit, valid JSON, known receiver) and renders the result.
 - Demo receiver, `/healthz`, `slog` logs, server timeouts, cross-origin protection.
+- Pre-commit quality checks (`scripts/check.sh`) and Claude config (`CLAUDE.md`, no Claude attribution).
 
 ## Not yet
 
@@ -16,4 +17,4 @@
 
 ## Next step
 
-Task 1: implement `Sender.Send` until `go test ./...` passes.
+Task 1: implement `Sender.Send` until `./scripts/check.sh` passes.
