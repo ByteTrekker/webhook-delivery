@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Webhook Delivery</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; color: #222; }
+    h1 { font-size: 1.4rem; }
+    label { display: block; margin-top: 1rem; font-weight: 600; }
+    select, textarea { width: 100%; box-sizing: border-box; font: inherit; padding: .4rem; }
+    textarea { font-family: ui-monospace, monospace; min-height: 10rem; }
+    button { margin-top: 1rem; padding: .5rem 1.2rem; font: inherit; cursor: pointer; }
+    .box { margin-top: 1.5rem; padding: 1rem; border-radius: 6px; border: 1px solid #ccc; }
+    .ok { border-color: #2a7; background: #effaf3; }
+    .bad { border-color: #c33; background: #fdf0f0; }
+    pre { white-space: pre-wrap; word-break: break-all; margin: .5rem 0 0; }
+    dt { font-weight: 600; } dd { margin: 0 0 .4rem; }
+  </style>
+</head>
+<body>
+  <h1>Webhook Delivery</h1>
+
+  {{if .Error}}<div class="box bad">{{.Error}}</div>{{end}}
+
+  <form method="post" action="/send">
+    <label for="receiver">Receiver</label>
+    <select id="receiver" name="receiver">
+      {{range .Receivers}}
+      <option value="{{.Name}}" {{if eq .Name $.Selected}}selected{{end}}>{{.Name}} ({{.URL}})</option>
+      {{end}}
+    </select>
+
+    <label for="payload">Payload (JSON)</label>
+    <textarea id="payload" name="payload">{{.Payload}}</textarea>
+
+    <button type="submit">Send</button>
+  </form>
+
+  {{if .Sent}}
+  <div class="box {{if and (not .SendErr) (lt .Result.StatusCode 300)}}ok{{else}}bad{{end}}">
+    <dl>
+      <dt>Status</dt>
+      <dd>{{if .Result.StatusCode}}{{.Result.StatusCode}}{{else}}no response{{end}}</dd>
+      <dt>Duration</dt>
+      <dd>{{.Result.Duration}}</dd>
+      {{if .SendErr}}<dt>Error</dt><dd>{{.SendErr}}</dd>{{end}}
+    </dl>
+    {{if .Result.Body}}
+    <strong>Response{{if .Result.Truncated}} (truncated){{end}}</strong>
+    <pre>{{.Result.Body}}</pre>
+    {{end}}
+  </div>
+  {{end}}
+</body>
+</html>
