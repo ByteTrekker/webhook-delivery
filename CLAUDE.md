@@ -30,7 +30,9 @@ Jacek is the author and contributor of this repository.
 ## Git workflow (see CONTRIBUTING.md)
 
 - Never commit or push to `main`; work on a branch and open a pull request.
-- Never merge or approve pull requests. Jacek reviews and merges every PR.
+- Never merge, approve or submit reviews on pull requests: only Jacek approves
+  and merges. Claude's GitHub tools act as Jacek's account, so a review sent by
+  Claude would look like his.
 - Commit messages: Conventional Commits (`feat(webhook): ...`, `docs: ...`).
 - A PR changes at most 2000 lines (`go.sum` excluded). Plan work up front so
   each PR fits: split bigger work into several PRs that each build, pass

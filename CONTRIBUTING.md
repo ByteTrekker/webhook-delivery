@@ -6,8 +6,8 @@ Rules for everyone working in this repo, people and Claude sessions alike.
 
 - Never commit or push to `main`. Every change goes through a pull request
   from a branch (`feat/...`, `fix/...`, `docs/...`, `chore/...`).
-- A pull request is merged only after Jacek (@ByteTrekker) has reviewed it,
-  and only Jacek merges. `.github/CODEOWNERS` makes him the reviewer of
+- Only Jacek (@ByteTrekker) approves and merges pull requests. Claude
+  sessions never submit reviews or merge. `.github/CODEOWNERS` makes him the reviewer of
   every file.
 - A pull request changes at most **2000 lines** (added + deleted, `go.sum`
   not counted). Plan work so each PR fits; split bigger work into a series of

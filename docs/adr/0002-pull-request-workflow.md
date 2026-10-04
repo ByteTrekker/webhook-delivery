@@ -5,7 +5,7 @@
 ## Decision
 
 - No commits or pushes to `main`; all changes via pull requests.
-- Jacek reviews and merges every pull request (`.github/CODEOWNERS`).
+- Only Jacek approves and merges pull requests (`.github/CODEOWNERS`).
 - Conventional Commits for every commit.
 - At most 2000 changed lines per pull request (`go.sum` excluded).
 
@@ -33,5 +33,6 @@ branch ruleset on `main` (Settings → Rules → Rulesets → New branch ruleset
   count stays at 0 until PRs come from a separate account.
 - Rulesets on a private repository need GitHub Pro (or a public repository).
   Without them only the local hooks enforce these rules.
-- Claude sessions are denied merging, approving and pushing to `main` in
-  `.claude/settings.json`.
+- Claude sessions are denied merging, submitting reviews (approvals included)
+  and pushing to `main` in `.claude/settings.json`; their GitHub tools act as
+  Jacek's account, so a Claude review would look like his.

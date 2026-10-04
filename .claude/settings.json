@@ -36,7 +36,9 @@
       "Bash(gh pr merge:*)",
       "Bash(gh pr review:*)",
       "mcp__github__merge_pull_request",
-      "mcp__github__enable_pr_auto_merge"
+      "mcp__github__enable_pr_auto_merge",
+      "mcp__github__pull_request_review_write",
+      "mcp__github__add_comment_to_pending_review"
     ]
   }
 }
