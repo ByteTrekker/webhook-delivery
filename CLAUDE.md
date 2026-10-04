@@ -27,11 +27,21 @@ Jacek is the author and contributor of this repository.
   commits or PR descriptions (also disabled in `.claude/settings.json`).
 - Do not change `git config user.name` / `user.email`.
 
+## Git workflow (see CONTRIBUTING.md)
+
+- Never commit or push to `main`; work on a branch and open a pull request.
+- Never merge or approve pull requests. Jacek reviews and merges every PR.
+- Commit messages: Conventional Commits (`feat(webhook): ...`, `docs: ...`).
+- A PR changes at most 2000 lines (`go.sum` excluded). Plan work up front so
+  each PR fits: split bigger work into several PRs that each build, pass
+  checks and work on their own. Check with `./scripts/check-pr-size.sh`.
+
 ## Quality checks
 
 `./scripts/check.sh` runs gofmt, `go mod tidy -diff`, `go vet`, golangci-lint
 and `go test`. The git pre-commit hook in `.githooks/` runs it before every
-commit; `.claude/settings.json` enables the hook (`core.hooksPath`) at session
+commit, `commit-msg` checks Conventional Commits and `pre-push` blocks `main`
+and oversized branches; `.claude/settings.json` enables the hook (`core.hooksPath`) at session
 start. Fix failures instead of using `--no-verify`. `SKIP_TESTS=1` is only for
 committing work in progress on a „ja implementuję” task whose tests are red.
 

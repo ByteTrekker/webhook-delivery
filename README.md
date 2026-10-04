@@ -19,6 +19,11 @@ Configuration (environment variables):
 | `ADDR` | `localhost:8080` | listen address |
 | `DEMO_BASE_URL` | `http://$ADDR` | base URL of the built-in demo receiver |
 
+## Contributing
+
+Branches + pull requests only (no commits to `main`), Conventional Commits,
+at most 2000 changed lines per PR. Details: `CONTRIBUTING.md`.
+
 ## Code quality checks
 
 Every commit runs gofmt, `go mod tidy -diff`, `go vet`, golangci-lint and
@@ -48,6 +53,6 @@ still red: `SKIP_TESTS=1 git commit ...` (formatting, vet and lint still run).
 
 - `cmd/web` — HTTP server, handlers, templates
 - `internal/webhook` — sending webhooks over HTTP
-- `scripts/check.sh`, `.githooks/` — quality checks before commit
+- `scripts/`, `.githooks/` — quality checks, commit message and PR size checks
 - `docs/` — status, decisions, learning log, tasks
 - `CLAUDE.md`, `.claude/` — rules for Claude sessions
