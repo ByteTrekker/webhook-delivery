@@ -13,6 +13,15 @@ Rules for everyone working in this repo, people and Claude sessions alike.
   not counted). Plan work so each PR fits; split bigger work into a series of
   PRs that each work on their own. Check with `./scripts/check-pr-size.sh`.
 
+## Documentation: English (ASD-STE100) and Polish
+
+- Every document (`README.md`, `CONTRIBUTING.md`, `docs/**`) has an English
+  version (`name.md`) and a Polish version (`name.pl.md`).
+- Write the English version in ASD-STE100 Simplified Technical English.
+- The Polish version is a translation of the English version.
+- Update both versions in the same pull request.
+- The full rules are in `CLAUDE.md`, section "Documentation language".
+
 ## Commit messages: Conventional Commits
 
 Every commit follows [Conventional Commits 1.0](https://www.conventionalcommits.org/en/v1.0.0/):

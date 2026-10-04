@@ -11,13 +11,40 @@ programmer, not a co-author.
 
 ## Working rules
 
-- Explain in Polish; code, identifiers, comments and commit messages in English.
+- Explain in Polish in chat; code, identifiers, comments and commit messages
+  in English. Documentation: see "Documentation language".
 - Tasks marked „ja implementuję” are Jacek's: do not write that logic unless he
   explicitly asks for the implementation. Give hints → pseudocode → snippet.
 - Tests for an unfinished „ja implementuję” task are red on purpose. Do not
   change them to make them pass.
 - Update `docs/status.md` and `docs/learning-log.md` after each task.
 - Never claim tests pass without running them.
+
+## Documentation language
+
+All documentation (`README.md`, `CONTRIBUTING.md`, `docs/**`) exists in
+English and Polish.
+
+- English is the source. Write it in ASD-STE100 Simplified Technical English
+  (rules below).
+- Polish is a translation of the English text: same structure, same
+  sentences, same meaning. Do not add or remove content in only one language.
+- Files: `name.md` is English, `name.pl.md` is Polish. The first line of each
+  file links to the other language: `[Polski](name.pl.md)` / `[English](name.md)`.
+- A change to one language updates the other in the same PR.
+- Code, identifiers, code comments and commit messages stay English only.
+- Existing Polish-only docs are converted when they are next changed.
+
+ASD-STE100 rules to apply:
+
+- One topic per sentence. Procedures: max 20 words per sentence, imperative,
+  one instruction per sentence. Descriptions: max 25 words per sentence.
+- Max 6 sentences per paragraph.
+- Active voice. Simple tenses (present, simple past, future).
+- Use approved, simple words with one meaning; use the same technical name
+  for the same thing every time (Endpoint, Event, Delivery, DeliveryAttempt).
+- Use articles ("the", "a") where possible. No -ing words as nouns.
+- Write notes and warnings as separate, clear sentences.
 
 ## Authorship
 
